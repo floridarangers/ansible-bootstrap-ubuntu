@@ -1,6 +1,6 @@
 ---
 - name: Install fail2ban
-  action: apt pkg=fail2ban state=installed
+  action: apt pkg=fail2ban state=present
 
 - name: Disallow password authentication
   action: lineinfile dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
@@ -14,7 +14,7 @@
   action: file path=/etc/sudoers.d/* state=absent
 
 - name: Install packages
-  action: apt pkg=ufw state=installed
+  action: apt pkg=ufw state=present
 
 - name: Setup ufw 22/tcp
   action: shell ufw allow 22/tcp
