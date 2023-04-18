@@ -13,4 +13,4 @@
   notify: update tzdata
 
 - name: Install ntp packages
-  action: apt pkg=ntp state=installed
+  action: apt pkg=ntp state=present
