@@ -8,6 +8,13 @@
 - name: Add or udpate authorized key
   action: authorized_key user={{ username }} key="{{ lookup('file', id_rsa_path) }}"
   when: id_rsa_path is defined
+  
+- name: Set authorized keys taken from url using lookup
+  ansible.posix.authorized_key:
+    user: {{ username }}
+    state: present
+    key: "{{ lookup('url', '{{ id_rsa_url }}', split_lines=False) }}"
+  when: id_rsa_url is defined
 
 - name: Add user to sudoers
   action: lineinfile dest=/etc/sudoers regexp="{{ username }} ALL" line="{{ username }} ALL=(ALL) ALL" state=present  
