@@ -2,6 +2,8 @@
 - name: Add or update the existing user on Ubuntu servers
   hosts: server
   become: yes
+  vars: 
+    id_rsa_url: "https://github.com/floridarangers.keys"
   roles:
     - user
 
@@ -19,7 +21,7 @@
     - name: "id_rsa_path"
       prompt: "Enter id_rsa.pub path"
       default: "~/.ssh/id_rsa.pub"
-      private: no
+      private: no  
 
     - name: "sudoers"
       prompt: "Add user to sudoers group (y/n)"
